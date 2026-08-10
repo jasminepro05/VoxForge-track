@@ -1,0 +1,1 @@
+"""VoxMock interview backend."""

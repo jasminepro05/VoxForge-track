@@ -1,0 +1,8 @@
+ML_KNOWLEDGE = [
+    {"id": "bias-variance", "title": "Bias-variance tradeoff", "question": "Explain the bias-variance tradeoff and how regularization changes it.", "content": "High bias underfits; high variance overfits. Cross-validation identifies the useful regularization strength."},
+    {"id": "precision-recall", "title": "Precision, recall, and thresholds", "question": "When would you optimize precision instead of recall, and how would you choose a threshold?", "content": "Precision measures correctness of positive predictions; recall measures coverage of actual positives. Threshold choice depends on false-positive and false-negative cost."},
+    {"id": "cross-validation", "title": "Cross-validation", "question": "How would you evaluate a model when the training data is limited?", "content": "Use stratified folds for classification, prevent leakage in preprocessing, and reserve a final test set for unbiased reporting."},
+    {"id": "gradient-descent", "title": "Gradient descent", "question": "What causes gradient descent to diverge or converge slowly?", "content": "Learning rate, feature scaling, conditioning, optimizer choice, and noisy gradients affect convergence."},
+    {"id": "data-leakage", "title": "Data leakage", "question": "Give an example of data leakage and how you would prevent it.", "content": "Leakage occurs when training uses future or target-derived information. Fit preprocessing only on training folds and use time-aware splits."},
+    {"id": "class-imbalance", "title": "Class imbalance", "question": "How would you build a classifier for a severely imbalanced dataset?", "content": "Use suitable metrics such as PR-AUC, class weights or resampling, calibrated thresholds, and inspect minority-class errors."},
+]
