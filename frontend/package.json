@@ -1,0 +1,9 @@
+{
+  "name": "voxmock-frontend",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": { "dev": "vite", "build": "tsc -b && vite build", "test": "vitest run" },
+  "dependencies": { "react": "19.2.8", "react-dom": "19.2.8" },
+  "devDependencies": { "@vitejs/plugin-react": "6.0.5", "vite": "8.2.1", "typescript": "7.0.2", "@types/react": "19.2.8", "@types/react-dom": "19.2.8", "vitest": "latest" }
+}

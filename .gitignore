@@ -1,1 +1,11 @@
 
+.env
+.pnpm-store/
+node_modules/
+dist/
+*.tsbuildinfo
+vite.config.js
+vite.config.d.ts
+__pycache__/
+*.py[cod]
+.pytest_cache/
