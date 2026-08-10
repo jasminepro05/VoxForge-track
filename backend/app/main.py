@@ -12,8 +12,8 @@ from app.services.voice import VoiceService
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    settings = get_settings(); embedder = GeminiEmbeddingProvider(settings); store = QdrantStore(settings, embedder); store.initialise()
-    app.state.interviews = InterviewService(store, GeminiEvaluator(settings))
+    settings = get_settings()
+    app.state.interviews = None
     app.state.voice = VoiceService(settings)
     yield
 
@@ -21,7 +21,15 @@ async def lifespan(app: FastAPI):
 app = FastAPI(title="VoxMock API", version="0.1.0", lifespan=lifespan)
 app.add_middleware(CORSMiddleware, allow_origins=get_settings().origins, allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 
-def service() -> InterviewService: return app.state.interviews
+def service() -> InterviewService:
+    """Initialise external interview services on first use, not during health checks."""
+    if app.state.interviews is None:
+        settings = get_settings()
+        embedder = GeminiEmbeddingProvider(settings)
+        store = QdrantStore(settings, embedder)
+        store.initialise()
+        app.state.interviews = InterviewService(store, GeminiEvaluator(settings))
+    return app.state.interviews
 def voice_service() -> VoiceService: return app.state.voice
 def translate(error: Exception):
     if isinstance(error, KeyError): raise HTTPException(404, str(error))

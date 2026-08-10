@@ -1,9 +1,13 @@
 from functools import lru_cache
+from pathlib import Path
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
+ROOT_DIR = Path(__file__).resolve().parents[2]
+
+
 class Settings(BaseSettings):
-    model_config = SettingsConfigDict(env_file=".env", extra="ignore")
+    model_config = SettingsConfigDict(env_file=ROOT_DIR / ".env", extra="ignore")
     gemini_api_key: str | None = None
     gemini_model: str = "gemini-2.5-flash"
     gemini_embedding_model: str = "gemini-embedding-001"

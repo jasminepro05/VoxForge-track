@@ -7,6 +7,8 @@ python -m pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
+`/health` starts without external credentials. To start an interview, set `GEMINI_API_KEY` and make Qdrant available at `QDRANT_URL`. Voice transcription and speech additionally require `STT_API_KEY` and `RIME_API_KEY`; missing credentials produce a clear `503` response instead of preventing the API from starting.
+
 The startup process validates `GEMINI_API_KEY`, creates/seeds three Qdrant collections, and uses Gemini embeddings for every stored and queried vector.
 
 ## APIs
